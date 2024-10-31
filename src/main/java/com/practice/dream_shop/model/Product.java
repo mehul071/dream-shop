@@ -12,7 +12,6 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor
 @Entity
 public class Product {
     @Id
@@ -20,8 +19,8 @@ public class Product {
     private Long id;
     private String name;
     private String brand;
-    private String description;
     private BigDecimal price;
+    private String description;
     private int inventory;
 
     @ManyToOne(cascade = CascadeType.ALL)       //when a product is deleted the relationship between the category will be deleted as well.
@@ -30,4 +29,13 @@ public class Product {
 
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Image> images;
+
+    public Product(String name, String brand,  BigDecimal price, int inventory, String description, Category category) {
+        this.name = name;
+        this.brand = brand;
+        this.price = price;
+        this.inventory = inventory;
+        this.description = description;
+        this.category = category;
+    }
 }
