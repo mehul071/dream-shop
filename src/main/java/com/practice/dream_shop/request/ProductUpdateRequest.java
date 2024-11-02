@@ -1,7 +1,6 @@
 package com.practice.dream_shop.request;
 
 import com.practice.dream_shop.model.Category;
-import com.practice.dream_shop.model.Product;
 import lombok.Data;
 
 import java.math.BigDecimal;
