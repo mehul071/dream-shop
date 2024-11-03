@@ -1,6 +1,7 @@
 package com.practice.dream_shop.service.product;
 
 import com.practice.dream_shop.exception.ProductNotFoundException;
+import com.practice.dream_shop.exception.ResourceNotFoundException;
 import com.practice.dream_shop.model.Category;
 import com.practice.dream_shop.model.Product;
 import com.practice.dream_shop.repository.ProductRepository;
@@ -46,7 +47,7 @@ public class ProductService implements IProductService {
     @Override
     public Product getProductById(Long id) {
         return productRepository.findById(id)
-                .orElseThrow(()-> new ProductNotFoundException("Product not found!"));
+                .orElseThrow(()-> new ResourceNotFoundException("Product not found!"));
     }
 
     @Override
@@ -61,7 +62,7 @@ public class ProductService implements IProductService {
         return productRepository.findById(productId)
                 .map(existingProduct -> updateExistingProduct(existingProduct,request))
                 .map(productRepository :: save)
-                .orElseThrow(()-> new ProductNotFoundException("Product not found!"));
+                .orElseThrow(()-> new ResourceNotFoundException("Product not found!"));
     }
 
     private Product updateExistingProduct(Product existingProduct, ProductUpdateRequest request) {
